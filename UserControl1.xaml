@@ -1,0 +1,40 @@
+﻿<Window x:Name="U_83"
+             Title="F_U_83"
+             x:Class="Autocad_Listing_All_Blocks_07_2024.UserControl1"
+             xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+             xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+             xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006" 
+             xmlns:d="http://schemas.microsoft.com/expression/blend/2008" 
+             xmlns:local="clr-namespace:Autocad_Listing_All_Blocks_07_2024"
+             mc:Ignorable="d"  
+             WindowStartupLocation="CenterScreen" MinHeight="150" MinWidth="300" 
+             MaxHeight="400" MaxWidth="800"  Width="400" Height="250" >
+    <Grid>
+        <Grid.ColumnDefinitions >
+            <ColumnDefinition></ColumnDefinition>
+            <ColumnDefinition></ColumnDefinition>
+            <ColumnDefinition></ColumnDefinition>
+            <ColumnDefinition></ColumnDefinition>
+        </Grid.ColumnDefinitions>
+        <Grid.RowDefinitions>
+            <RowDefinition></RowDefinition>
+            <RowDefinition></RowDefinition>
+            <RowDefinition></RowDefinition>
+            <RowDefinition></RowDefinition>
+        </Grid.RowDefinitions>
+        <Label   Grid.Row="0" Grid.Column="0" Grid.ColumnSpan="3"
+                 HorizontalAlignment="Center" VerticalAlignment="Center"
+                 Content="Ищем атрибуты 29-0-2024" FontSize="20"></Label>
+        <TextBox x:Name="textSeach" Grid.Row="1" Grid.Column="0"
+                 Grid.ColumnSpan="3" Grid.RowSpan="3"
+                 Margin="10" BorderBrush="Aqua" TextWrapping="Wrap"
+                 TextChanged="textSeach_TextChanged" AcceptsReturn="True" 
+                 ScrollViewer.CanContentScroll="True" VerticalScrollBarVisibility="Visible" ></TextBox>
+        <Button x:Name="buttonSeach" Content="найти атрибуты"
+                Grid.Row="2" Grid.Column="3" Grid.ColumnSpan="1"
+                Margin="10" Click="buttonSeach_Click"></Button>
+        <Button x:Name="buttonClouseWin" Content="выход"
+                Grid.Row="3" Grid.Column="3" Grid.ColumnSpan="1"
+                Margin="10"></Button>
+    </Grid>
+</Window>
