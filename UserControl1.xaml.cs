@@ -38,5 +38,11 @@ namespace Autocad_Listing_All_Blocks_07_2024
            WinCloseTwo.massSeach = textSeach.Text.Split(new String[] { "\r\n" }, StringSplitOptions.RemoveEmptyEntries);
             dumpAttributes.ListAttributes();
         }
+
+        private void buttonClouseWin_Click(object sender, RoutedEventArgs e)
+        {
+            this.Close();
+            WinCloseTwo.countWin = 0;
+        }
     }
 }

@@ -10,7 +10,7 @@ namespace MyApplication
 {
     public class DumpAttributes
     {
-        [CommandMethod("LISTATT", CommandFlags.Redraw)]
+        [CommandMethod("U_83_LISTATT", CommandFlags.Redraw)]
         public void ListAttributes()
         {
             CheckDateWork.CheckDate();
@@ -61,23 +61,26 @@ namespace MyApplication
                     btr.Dispose();
                     AttributeCollection attCol = blkRef.AttributeCollection;
 
+
                     foreach (ObjectId attId in attCol)
                     {
-                        AttributeReference attRef = (AttributeReference)tr.GetObject(attId, OpenMode.ForRead);
-                        if (attRef.TextString == WinCloseTwo.massSeach[0])
+                        for (int i = 0; i < WinCloseTwo.massSeach.Length; i++)
                         {
-                            // добавляем id блока в список ---- повторяю блока а не аттрибута 24-07-2024 01-21 ночи
-                            pid.Add(blkId);
-                            //Add ObjectIds to the pid
-                            SelectionSet ss1 = SelectionSet.FromObjectIds(pid.ToArray());
-                            ed.SetImpliedSelection(ss1);
-                            string str = ("\n Attribute Tag: " + attRef.Tag + "\n Attribute String: " + attRef.TextString);
-                            ed.WriteMessage(str);
+                            AttributeReference attRef = (AttributeReference)tr.GetObject(attId, OpenMode.ForRead);
+                            if (attRef.TextString == WinCloseTwo.massSeach[i])
+                            {
+                                // добавляем id блока в список ---- повторяю блока а не аттрибута 24-07-2024 01-21 ночи
+                                pid.Add(blkId);
+                                //Add ObjectIds to the pid
+                                SelectionSet ss1 = SelectionSet.FromObjectIds(pid.ToArray());
+                                ed.SetImpliedSelection(ss1);
+                                string str = ("\n Attribute Tag: " + attRef.Tag + "\n Attribute String: " + attRef.TextString);
+                                ed.WriteMessage(str);
+                            }
                         }
                     }
                 }
                 tr.Commit();
-
             }
             catch (Autodesk.AutoCAD.Runtime.Exception ex)
             {
