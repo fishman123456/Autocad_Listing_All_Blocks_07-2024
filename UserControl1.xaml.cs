@@ -44,5 +44,11 @@ namespace Autocad_Listing_All_Blocks_07_2024
             this.Close();
             WinCloseTwo.countWin = 0;
         }
+
+        private void buttonClearTextbox_Click(object sender, RoutedEventArgs e)
+        {
+            textSeach.Text = string.Empty;
+            WinCloseTwo.massSeach = new string[1] { "0" };
+        }
     }
 }

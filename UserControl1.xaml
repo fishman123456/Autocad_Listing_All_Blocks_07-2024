@@ -36,5 +36,8 @@
         <Button x:Name="buttonClouseWin" Content="выход"
                 Grid.Row="3" Grid.Column="3" Grid.ColumnSpan="1"
                 Margin="10" Click="buttonClouseWin_Click"></Button>
+        <Button x:Name="buttonClearTextbox" Content="очистить"
+         Grid.Row="1" Grid.Column="3" Grid.ColumnSpan="1"
+         Margin="10" Click="buttonClearTextbox_Click" ></Button>
     </Grid>
 </Window>

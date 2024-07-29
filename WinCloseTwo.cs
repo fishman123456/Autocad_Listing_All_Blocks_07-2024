@@ -9,6 +9,7 @@ namespace Autocad_Listing_All_Blocks_07_2024
     public class WinCloseTwo
     {
         public static int countWin { get; set; } = 0;
-        public static string[] massSeach = new string[] { };
+        // начальное значение массива
+        public static string[] massSeach = new string[1] {"0"};
     }
 }
