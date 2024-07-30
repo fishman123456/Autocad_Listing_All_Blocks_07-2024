@@ -33,7 +33,11 @@ namespace MyApplication
             {
                 // Build a filter list so that only
                 // block references are selected
-                TypedValue[] filList = new TypedValue[1] { new TypedValue((int)DxfCode.Start, "INSERT") };
+                //TypedValue[] filList = new TypedValue[1] { new TypedValue((int)DxfCode.Subclass, "AcDbBlockReference") };
+
+                TypedValue[] filList = new TypedValue[2]
+                {   new TypedValue((int)DxfCode.Start, "INSERT"),
+                    new TypedValue((int)DxfCode.HasSubentities, 1) };
 
                 SelectionFilter filter = new SelectionFilter(filList);
 
@@ -41,27 +45,37 @@ namespace MyApplication
 
                 opts.MessageForAdding = "Select block references: ";
 
-                //PromptSelectionResult res = ed.GetSelection(opts, filter);
-                PromptSelectionResult res = ed.SelectAll();
+                PromptSelectionResult res = ed.GetSelection(opts, filter);
+                // PromptSelectionResult res = ed.selecti(opts, ObjectTypeAttribute);
+                // PromptSelectionResult res = ed.SelectAll();
                 // Do nothing if selection is unsuccessful
                 if (res.Status != PromptStatus.OK)
                     return;
 
                 SelectionSet selSet = res.Value;
                 ObjectId[] idArray = selSet.GetObjectIds();
+                // проверим по типу обькты
+                foreach (var e in res.Value)
+                {
+                    //ed.WriteMessage(e.GetType().ToString() + "\n");
+                }
 
                 // создаем список, потом в массив преобразуем и выделим в модели 24-07-2024
                 List<ObjectId> pid = new List<ObjectId>();
                 foreach (ObjectId blkId in idArray)
                 {
+                    // проверка по типу обьекта, берем только блоки
+                    // Autodesk.AutoCAD.DatabaseServices.MText
+                    //Autodesk.AutoCAD.DatabaseServices.BlockReference
+
                     BlockReference blkRef =
-                      (BlockReference)tr.GetObject(blkId, OpenMode.ForRead);
+                          (BlockReference)tr.GetObject(blkId, OpenMode.ForRead);
                     BlockTableRecord btr = (BlockTableRecord)tr.GetObject(blkRef.BlockTableRecord, OpenMode.ForRead);
-                    ed.WriteMessage("\nBlock: " + btr.Name);
-                    btr.Dispose();
+                    //ed.WriteMessage("\nBlock: " + btr.Name + btr.AcadObject);
+                    //btr.Dispose();
                     AttributeCollection attCol = blkRef.AttributeCollection;
 
-
+                    int countBlock = 0;
                     foreach (ObjectId attId in attCol)
                     {
                         for (int i = 0; i < WinCloseTwo.massSeach.Length; i++)
@@ -78,8 +92,11 @@ namespace MyApplication
                                 ed.WriteMessage(str);
                             }
                         }
+                        //countBlock++;
                     }
+                    ed.WriteMessage("количество - " + countBlock + "\n");
                 }
+
                 tr.Commit();
             }
             catch (Autodesk.AutoCAD.Runtime.Exception ex)
