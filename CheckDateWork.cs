@@ -16,7 +16,7 @@ namespace MyApplication
         {
 
             DateTime dt1 = DateTime.Now;
-            DateTime dt2 = DateTime.Parse("26/10/2024");
+            DateTime dt2 = DateTime.Parse("26/10/2025");
             Window w1 = new Window();
 
             if (dt1.Date > dt2.Date)
